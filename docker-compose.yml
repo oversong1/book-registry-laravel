@@ -1,0 +1,34 @@
+services:
+  db:
+    image: mysql:8.4
+    container_name: sas_db
+    environment:
+      MYSQL_DATABASE: books
+      MYSQL_USER: books
+      MYSQL_PASSWORD: books
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3310:3306"
+    volumes:
+      - sas_db_data:/var/lib/mysql
+
+  adminer:
+    image: adminer:4
+    container_name: sas_adminer
+    ports:
+      - "8090:8080"
+    depends_on:
+      - db
+
+  php:
+    build: ./docker/php
+    container_name: sas_php
+    ports:
+      - "8098:80"
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - db
+
+volumes:
+  sas_db_data:

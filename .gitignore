@@ -1,0 +1,11 @@
+# --- Guias de estudo (nao sao codigo): os .md numerados da raiz ---
+/[0-9][0-9]-*.md
+
+# --- Segredos: nunca vao pro Git (o .env.example vai) ---
+.env
+.env.*
+!.env.example
+
+# --- Lixo do sistema operacional ---
+Thumbs.db
+.DS_Store
