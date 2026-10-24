@@ -7,9 +7,11 @@ use Illuminate\Validation\Rule;
 
 class UpdateBookRequest extends FormRequest
 {
+    // So o dono pode atualizar: pergunta pra BookPolicy::update().
+    // Roda ANTES das regras: quem nao e dono recebe 403 e nao ve erro de validacao.
     public function authorize(): bool
     {
-        return true;
+        return $this->user()->can('update', $this->route('book'));
     }
 
     public function rules(): array
