@@ -36,9 +36,14 @@
             </div>
 
             <div>
-                <label for="value" class="mb-1 block text-sm font-medium">Valor</label>
-                {{-- step="0.01": aceita 2 casas decimais --}}
-                <input type="number" name="value" id="value" step="0.01" min="0" value="{{ old('value', $book->value) }}"
+                <label for="value" class="mb-1 block text-sm font-medium">Valor (R$)</label>
+                {{-- type="text" (e nao number) pra aceitar a mascara 1.234,56.
+                     data-mask="money": o resources/js/money-mask.js formata enquanto digita
+                     e, ao salvar, converte pra 1234.56 (o formato que a validacao espera).
+                     O valor que vem do banco ("1234.56") e mostrado ja formatado ("1.234,56"). --}}
+                @php($valor = old('value', $book->value))
+                <input type="text" name="value" id="value" inputmode="decimal" data-mask="money" placeholder="0,00"
+                       value="{{ is_numeric($valor) ? number_format((float) $valor, 2, ',', '.') : $valor }}"
                        class="w-full rounded border border-gray-300 px-3 py-2">
                 @error('value')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>

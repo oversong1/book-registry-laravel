@@ -1,5 +1,18 @@
 # Book Registry
 
+> [!CAUTION]
+> **NA PRIMEIRA VEZ, O SITE LEVA VÁRIOS MINUTOS PARA ABRIR. ATÉ LÁ, ELE NÃO FUNCIONA.**
+>
+> Depois do `docker compose up -d --build`, o container ainda instala as dependências do PHP e do
+> Node, compila o Tailwind e cria o banco. Nesse tempo, o navegador mostra
+> **"Esta página não está funcionando"** (`ERR_EMPTY_RESPONSE`). **Isso NÃO é erro: espere.**
+> O tempo depende do computador e da internet.
+>
+> Para saber quando terminou, rode o comando abaixo e espere aparecer
+> `[entrypoint] pronto: http://localhost:8098`:
+>
+>     docker compose logs php -f
+
 Cadastro de livros em **Laravel 12**. Cada usuário faz login com senha e gerencia **só os próprios livros**
 (criar, listar, ver, editar e apagar).
 
@@ -30,13 +43,18 @@ cd book-registry-laravel
 docker compose up -d --build
 ```
 
-**Na primeira vez, a aplicação leva alguns minutos para responder.** O container instala as dependências do
-PHP e do Node, compila o Tailwind, cria o `.env`, cria as tabelas e os dados de demonstração. Acompanhe pelo log
-até aparecer `[entrypoint] pronto`:
-
-```bash
-docker compose logs php -f
-```
+> [!CAUTION]
+> **NA PRIMEIRA VEZ, O SITE LEVA VÁRIOS MINUTOS PARA ABRIR. ATÉ LÁ, ELE NÃO FUNCIONA.**
+>
+> Depois do `docker compose up -d --build`, o container ainda instala as dependências do PHP e do
+> Node, compila o Tailwind e cria o banco. Nesse tempo, o navegador mostra
+> **"Esta página não está funcionando"** (`ERR_EMPTY_RESPONSE`). **Isso NÃO é erro: espere.**
+> O tempo depende do computador e da internet.
+>
+> Para saber quando terminou, rode o comando abaixo e espere aparecer
+> `[entrypoint] pronto: http://localhost:8098`:
+>
+>     docker compose logs php -f
 
 | Serviço | Endereço |
 |---|---|
@@ -249,6 +267,19 @@ Laravel Sanctum) and **web screens** (Blade + Tailwind, session authentication).
 minutes (dependencies, Tailwind build, `.env`, migrations and seed); follow `docker compose logs php -f` until
 `[entrypoint] pronto` appears. App: http://localhost:8098 · API: http://localhost:8098/api/v1 · Adminer:
 http://localhost:8090.
+
+> [!CAUTION]
+> **ON THE FIRST RUN, THE SITE TAKES SEVERAL MINUTES TO OPEN. UNTIL THEN, IT DOES NOT WORK.**
+>
+> After `docker compose up -d --build`, the container still installs the PHP and Node dependencies,
+> builds Tailwind and creates the database. Meanwhile the browser shows
+> **"This page isn't working"** (`ERR_EMPTY_RESPONSE`). **This is NOT an error: wait.**
+> The time depends on the computer and the internet connection.
+>
+> To know when it is done, run the command below and wait for
+> `[entrypoint] pronto: http://localhost:8098`:
+>
+>     docker compose logs php -f
 
 **Demo users:** `test@example.com` / `password` (5 books) and `other@example.com` / `password` (3 books).
 

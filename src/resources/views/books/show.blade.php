@@ -12,7 +12,7 @@
             </div>
             <div>
                 <dt class="text-sm text-gray-500">Valor</dt>
-                <dd>{{ $book->value ?? '—' }}</dd>
+                <dd>{{ $book->value !== null ? 'R$ ' . number_format((float) $book->value, 2, ',', '.') : '—' }}</dd>
             </div>
             <div>
                 <dt class="text-sm text-gray-500">Cadastrado em</dt>

@@ -25,7 +25,8 @@
                         <td class="px-4 py-3">{{ $book->name }}</td>
                         {{-- ?? : se for null, mostra um traco --}}
                         <td class="px-4 py-3">{{ $book->isbn ?? '—' }}</td>
-                        <td class="px-4 py-3">{{ $book->value ?? '—' }}</td>
+                        {{-- number_format(valor, 2 casas, ',' nos centavos, '.' nos milhares): 1234.5 -> 1.234,50 --}}
+                        <td class="px-4 py-3">{{ $book->value !== null ? 'R$ ' . number_format((float) $book->value, 2, ',', '.') : '—' }}</td>
                         <td class="px-4 py-3">
                             <div class="flex justify-end gap-3 text-sm">
                                 <a href="{{ route('books.show', $book) }}" class="text-indigo-600 hover:underline">Ver</a>
