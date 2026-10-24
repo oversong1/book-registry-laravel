@@ -31,6 +31,55 @@ GET {{baseUrl}}/me
 Accept: application/json
 Authorization: Bearer {{login.response.body.$.token}}
 
+### Listar meus livros
+GET {{baseUrl}}/books?per_page=5
+Accept: application/json
+Authorization: Bearer {{login.response.body.$.token}}
+
+### Criar livro
+# @name createBook
+POST {{baseUrl}}/books
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.token}}
+
+{
+    "name": "Clean Code",
+    "isbn": "9780132350884",
+    "value": "49.90"
+}
+
+### Criar com dados invalidos (espera 422)
+POST {{baseUrl}}/books
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.token}}
+
+{
+    "isbn": "978-ABC",
+    "value": "12.345"
+}
+
+### Ver um livro
+GET {{baseUrl}}/books/{{createBook.response.body.$.data.id}}
+Accept: application/json
+Authorization: Bearer {{login.response.body.$.token}}
+
+### Atualizar so o valor (PATCH)
+PATCH {{baseUrl}}/books/{{createBook.response.body.$.data.id}}
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.token}}
+
+{
+    "value": "39.90"
+}
+
+### Apagar o livro
+DELETE {{baseUrl}}/books/{{createBook.response.body.$.data.id}}
+Accept: application/json
+Authorization: Bearer {{login.response.body.$.token}}
+
 ### Logout (apaga este token)
 POST {{baseUrl}}/logout
 Accept: application/json

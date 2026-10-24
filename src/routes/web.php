@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Web\AuthController;
+use App\Http\Controllers\Web\BookController;
 use Illuminate\Support\Facades\Route;
 
 // A pagina inicial manda direto pra lista de livros
@@ -20,9 +21,6 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    // PROVISORIO: so pra existir a rota "books.index" (usada no layout e depois do login).
-    // Mostra so o layout (cabecalho com "Ola" e o botao Sair). Na Fase 9 vira a lista de livros.
-    Route::get('/books', function () {
-        return view('layouts.app');
-    })->name('books.index');
+    // resource: as 7 rotas (index, create, store, show, edit, update, destroy)
+    Route::resource('books', BookController::class);
 });

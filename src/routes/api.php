@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\BookController;
 use Illuminate\Support\Facades\Route;
 
 // Todas as rotas deste arquivo ja comecam com /api/v1 (bootstrap/app.php).
@@ -15,5 +16,8 @@ Route::name('api.')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('/me', [AuthController::class, 'me'])->name('me');
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+        // apiResource: as 5 rotas de API (index, store, show, update, destroy)
+        Route::apiResource('books', BookController::class);
     });
 });
