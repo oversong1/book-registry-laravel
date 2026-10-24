@@ -11,6 +11,12 @@ services:
       - "3310:3306"
     volumes:
       - sas_db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-ubooks", "-pbooks"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 20s
 
   adminer:
     image: adminer:4
@@ -28,7 +34,8 @@ services:
     volumes:
       - ./src:/var/www/html
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
 volumes:
   sas_db_data:
