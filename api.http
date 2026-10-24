@@ -15,15 +15,26 @@ Content-Type: application/json
     "password_confirmation": "secret123"
 }
 
-### Login
+# ### Login
+# # @name login
+# POST {{baseUrl}}/login
+# Accept: application/json
+# Content-Type: application/json
+
+# {
+#     "email": "ana@example.com",
+#     "password": "secret123"
+# }
+
+### Login (usuario de teste do Seeder)
 # @name login
 POST {{baseUrl}}/login
 Accept: application/json
 Content-Type: application/json
 
 {
-    "email": "ana@example.com",
-    "password": "secret123"
+    "email": "test@example.com",
+    "password": "password"
 }
 
 ### Quem sou eu
