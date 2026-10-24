@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -45,7 +46,15 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
+            // 'hashed': o proprio Model faz o hash da senha ao salvar (sem Hash::make)
             'password' => 'hashed',
         ];
+    }
+
+    // hasMany: um User TEM MUITOS livros.
+    // $user->books() vira "SELECT * FROM books WHERE user_id = <id do usuario>"
+    public function books(): HasMany
+    {
+        return $this->hasMany(Book::class);
     }
 }
