@@ -1,0 +1,37 @@
+# Requisicoes para testar a API no VS Code (extensao "REST Client").
+# Rode o "Login" primeiro: as outras requisicoes usam o token da resposta dele.
+
+@baseUrl = http://localhost:8098/api/v1
+
+### Criar conta
+POST {{baseUrl}}/register
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "Ana",
+    "email": "ana@example.com",
+    "password": "secret123",
+    "password_confirmation": "secret123"
+}
+
+### Login
+# @name login
+POST {{baseUrl}}/login
+Accept: application/json
+Content-Type: application/json
+
+{
+    "email": "ana@example.com",
+    "password": "secret123"
+}
+
+### Quem sou eu
+GET {{baseUrl}}/me
+Accept: application/json
+Authorization: Bearer {{login.response.body.$.token}}
+
+### Logout (apaga este token)
+POST {{baseUrl}}/logout
+Accept: application/json
+Authorization: Bearer {{login.response.body.$.token}}
