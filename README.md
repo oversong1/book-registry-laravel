@@ -1,17 +1,9 @@
 # Book Registry
 
-> [!CAUTION]
-> **NA PRIMEIRA VEZ, O SITE LEVA VÁRIOS MINUTOS PARA ABRIR. ATÉ LÁ, ELE NÃO FUNCIONA.**
->
-> Depois do `docker compose up -d --build`, o container ainda instala as dependências do PHP e do
-> Node, compila o Tailwind e cria o banco. Nesse tempo, o navegador mostra
-> **"Esta página não está funcionando"** (`ERR_EMPTY_RESPONSE`). **Isso NÃO é erro: espere.**
-> O tempo depende do computador e da internet.
->
-> Para saber quando terminou, rode o comando abaixo e espere aparecer
-> `[entrypoint] pronto: http://localhost:8098`:
->
->     docker compose logs php -f
+> [!NOTE]
+> **O sistema pode ser usado de duas formas:** pela **web** (telas com login, lista, cadastro, edição e
+> exclusão de livros) ou **só pela API** (`/api/v1`, respostas em JSON, login por token). A API atende ao que o
+> desafio pede; as telas são um extra. As duas usam as mesmas regras de validação e de permissão.
 
 Cadastro de livros em **Laravel 12**. Cada usuário faz login com senha e gerencia **só os próprios livros**
 (criar, listar, ver, editar e apagar).
