@@ -25,7 +25,7 @@ Laravel 12 · PHP 8.3 · MySQL 8.4 · Laravel Sanctum · Tailwind CSS 4 + Vite �
 ## Como rodar
 
 ```bash
-git clone https://github.com/SEU-USUARIO/book-registry-laravel.git
+git clone https://github.com/oversong1/book-registry-laravel.git
 cd book-registry-laravel
 docker compose up -d --build
 ```
